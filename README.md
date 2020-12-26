@@ -3,7 +3,7 @@
 This is a project on getting the running led example from [WRansohoff](https://github.com/WRansohoff/GD32VF103_templates) working with CMake.
 
 
-The Code in this project is directly copied from the `hello_led` example in his repository. I only modified the main.c to work with the LEDs on the [SeeedStudio GD32 RISC-V Dev Board](https://wiki.seeedstudio.com/SeeedStudio-GD32-RISC-V-Dev-Board/) and added the CMake configuration.
+The Code for blinking the LEDs is directly copied from the `hello_led` example in [WRansohoff](https://github.com/WRansohoff/GD32VF103_templates)s repository. I modified the main.c to work with the LEDs on the [SeeedStudio GD32 RISC-V Dev Board](https://wiki.seeedstudio.com/SeeedStudio-GD32-RISC-V-Dev-Board/) and my CMake version of the [RISCV firmware](http://www.gd32mcu.com/en/download/7?kw=GD32VF1).
 
 ## Dependencies
 
@@ -11,6 +11,18 @@ To build this project you need a build of the riscv-gcc toolchain in your path w
 If your toolchain has a different prefix you can change the `TOOLCHAIN_PREFIX` variable in the `tools/riscv32-gcc-toolchain.cmake` file.
 
 For flashing a version of openocd with support for the GD32V chip is needed.
+
+## Cloning
+
+This project includes the [GD32VF103 Firmware Lib](https://github.com/fAiL-ix/gd32vf103) as a submodul. To clone this repository with the submodules use the following command:
+
+`git clone --recurse-submodules https://github.com/fAiL-ix/gd32v_cmake_running_led.git`
+
+If you already cloned the repository you can use these two commands to download the submodule:
+
+`git submodule init`
+
+`git submodule update`
 
 ## Building
 
