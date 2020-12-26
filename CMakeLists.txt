@@ -1,18 +1,22 @@
 cmake_minimum_required(VERSION 3.19)
 
-#### Project gd32v_startup definitions start ####
-project(gd32v_startup VERSION 0.1.0 LANGUAGES ASM C)
+#### Project running_led definitions start ####
+project(running_led VERSION 1.0.0 LANGUAGES ASM C)
 
 add_executable(
-    gd32v_startup.elf
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/gd32vf103xb_boot.S"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/main.c"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/device_headers/n200_func.c"
+    running_led.elf
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/running_led/main.c"
     )
 
 target_include_directories(
-    gd32v_startup.elf
+    running_led.elf
     PRIVATE 
-        "${CMAKE_CURRENT_SOURCE_DIR}/src/device_headers"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/running_led"
     )
-##### Project gd32v_startup definitions end ####
+
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/extern/gd32vf103")
+
+target_compile_definitions(gd32vf103 PUBLIC GD32VF103V_EVAL)
+
+target_link_libraries(running_led.elf gd32vf103)
+##### Project running_led definitions end ####

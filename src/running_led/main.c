@@ -5,11 +5,15 @@
 // Device header files.
 #include "gd32vf103.h"
 #include "riscv_encoding.h"
+#include "gd32vf103_regs.h"
 
-// Pre-defined memory locations for program initialization.
-extern uint32_t _sidata, _sdata, _edata, _sbss, _ebss;
-// Current system core clock speed.
-volatile uint32_t SystemCoreClock = 8000000;
+volatile uint32_t SystemCoreClock;
+
+// System initialisation called in the startup sequence before main().
+void SystemInit() {
+  // Current system core clock speed.
+  SystemCoreClock = 8000000;
+}
 
 // Simple 'busy loop' delay method.
 __attribute__( ( optimize( "O0" ) ) )
@@ -21,11 +25,6 @@ void delay_cycles( uint32_t cyc ) {
 
 // 'main' method which gets called from the boot code.
 int main( void ) {
-  // Copy initialized data from .sidata (Flash) to .data (RAM)
-  memcpy( &_sdata, &_sidata, ( ( void* )&_edata - ( void* )&_sdata ) );
-  // Clear the .bss RAM section.
-  memset( &_sbss, 0x00, ( ( void* )&_ebss - ( void* )&_sbss ) );
-
   // Enable the GPIOA and GPIOC peripherals.
   RCC->APB2ENR |=  ( RCC_APB2ENR_IOPBEN );
 
