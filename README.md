@@ -35,4 +35,4 @@ And build the project:
 ## Flashing
 
 To flash the compiled program use openocd with the supplied config files:
-`openocd -f ../tools/sipeed-rv-debugger.cfg -f ../tools/gd32vf103.cfg -c "program gd32v_startup.elf verify reset exit"`
+`openocd -f ../tools/openocd_scripts/sipeed-rv-debugger.cfg -f ../tools/openocd_scripts/gd32vf103.cfg -c "program running_led.elf verify reset exit""`
