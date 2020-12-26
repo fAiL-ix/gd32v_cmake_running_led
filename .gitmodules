@@ -1,0 +1,3 @@
+[submodule "extern/gd32vf103"]
+	path = extern/gd32vf103
+	url = https://github.com/fAiL-ix/gd32vf103.git
